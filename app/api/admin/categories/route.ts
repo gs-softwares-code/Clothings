@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server'
 import { db } from '@/lib/db'
 import { slugify } from '@/lib/utils'
 
+export const dynamic = 'force-dynamic'
+
 export async function GET() {
   try {
     const categories = await db.category.findMany({
