@@ -1,0 +1,213 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   CSS Custom Properties — Brand Palette
+   ============================================================ */
+:root {
+  --color-ivory: #FFFFF0;
+  --color-champagne: #F7E7CE;
+  --color-charcoal: #36454F;
+  --color-off-white: #FAF9F6;
+  --color-warm-gray: #9B8EA0;
+  --color-gold: #C9A84C;
+  --color-deep-black: #1A1A1A;
+
+  --font-playfair: 'Playfair Display', Georgia, serif;
+  --font-inter: 'Inter', system-ui, sans-serif;
+}
+
+/* ============================================================
+   Base Reset & Typography
+   ============================================================ */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-off-white text-charcoal font-inter;
+    min-height: 100vh;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-playfair;
+  }
+
+  a {
+    @apply transition-colors duration-200;
+  }
+
+  input, textarea, select {
+    @apply outline-none;
+  }
+
+  button {
+    @apply cursor-pointer;
+  }
+
+  img {
+    @apply select-none;
+  }
+}
+
+/* ============================================================
+   Custom Scrollbar
+   ============================================================ */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-off-white);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-warm-gray);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-charcoal);
+}
+
+/* ============================================================
+   Utility / Component Layer
+   ============================================================ */
+@layer components {
+  /* Buttons */
+  .btn-primary {
+    @apply bg-charcoal text-white px-6 py-3 font-inter font-medium tracking-wide
+           hover:bg-opacity-90 transition-all duration-200 disabled:opacity-50
+           disabled:cursor-not-allowed active:scale-[0.98];
+  }
+
+  .btn-secondary {
+    @apply border border-charcoal text-charcoal px-6 py-3 font-inter font-medium tracking-wide
+           hover:bg-charcoal hover:text-white transition-all duration-200 disabled:opacity-50
+           disabled:cursor-not-allowed active:scale-[0.98];
+  }
+
+  .btn-gold {
+    @apply bg-[#C9A84C] text-white px-6 py-3 font-inter font-medium tracking-wide
+           hover:bg-[#b8963e] transition-all duration-200 disabled:opacity-50
+           disabled:cursor-not-allowed active:scale-[0.98];
+  }
+
+  /* Cards */
+  .product-card {
+    @apply relative overflow-hidden bg-white transition-all duration-300
+           hover:shadow-xl;
+  }
+
+  /* Form Inputs */
+  .input-field {
+    @apply w-full border border-gray-200 px-4 py-3 font-inter text-sm
+           focus:border-charcoal focus:ring-1 focus:ring-charcoal
+           transition-colors duration-200 bg-white placeholder:text-gray-400;
+  }
+
+  /* Section Titles */
+  .section-title {
+    @apply text-3xl md:text-4xl font-playfair text-charcoal;
+  }
+
+  .section-subtitle {
+    @apply text-warm-gray font-inter text-sm tracking-widest uppercase;
+  }
+
+  /* Badge */
+  .badge {
+    @apply absolute top-3 left-3 px-2 py-1 text-xs font-inter font-semibold
+           tracking-wider uppercase z-10;
+  }
+
+  .badge-new {
+    @apply badge bg-charcoal text-white;
+  }
+
+  .badge-sale {
+    @apply badge bg-red-600 text-white;
+  }
+
+  .badge-bestseller {
+    @apply badge bg-[#C9A84C] text-white;
+  }
+
+  /* Container */
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Page transitions */
+  .page-enter {
+    @apply animate-fade-in;
+  }
+}
+
+/* ============================================================
+   Swiper Overrides
+   ============================================================ */
+.swiper-pagination-bullet {
+  background: var(--color-warm-gray) !important;
+  opacity: 0.5;
+}
+
+.swiper-pagination-bullet-active {
+  background: var(--color-charcoal) !important;
+  opacity: 1;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: var(--color-charcoal) !important;
+}
+
+/* ============================================================
+   Loading skeleton animation
+   ============================================================ */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* ============================================================
+   Misc Helpers
+   ============================================================ */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Price strike-through */
+.price-original {
+  @apply text-warm-gray line-through text-sm;
+}
+
+/* Star rating */
+.star-filled {
+  color: #C9A84C;
+}
+
+.star-empty {
+  color: #D1D5DB;
+}
